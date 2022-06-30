@@ -10,12 +10,15 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+    font-family: 'Barlow Condensed', sans-serif;;
 }
 
 #wrapper {
+    position: relative;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     width: 100%;
     max-width: 600px;
     height: calc(100% - 4px);
@@ -29,8 +32,28 @@ header {
     flex-direction: column;
     left: 0px;
     top: 0px;
+    max-width: 600px;
     width: 100%;
     height: 20%;
+}
+
+#dices {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.die {
+    border: var(--dark) solid 2px;
+    width: 10%;
+}
+
+.die:before{
+	content: "";
+	display: block;
+	padding-top: 100%; 	/* ratio of 1:1*/
 }
 
 #info {
@@ -48,14 +71,27 @@ header {
 .task > p {
     display: flex;
     align-items: center;
-    font-size: 85%;
     height: 100%;
     padding-left: 8%;
     padding-right: 8%;
     margin: 0px;
 }
 
-.task > p > span {
-    text-align: center;
-    font-size: .75rem;
+.player{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 20%;
+}
+
+@media only screen and (max-width: 484px){
+    body{ 
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 389px){
+    body{ 
+        font-size: 80%;
+    }
 }
