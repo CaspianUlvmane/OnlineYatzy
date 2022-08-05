@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,85 +9,107 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@200;300;500&display=swap"
-      rel="stylesheet" />
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@200;300;500&display=swap"
+        rel="stylesheet" />
     <title>Document</title>
 </head>
+
 <body>
     <div id="wrapper">
-        <header>
+        <nav>
+            <div id="board" class="active">Scoreboard</div>
             <h1>Online Yahtzee</h1>
-            <div id="buttonContainer">
-                <button id="dice">Roll the dice!</button>
-            </div>
+            <div id="throw">Dice</div>
+        </nav>
+        <header>
+            <button id="roller">Roll the dice!</button>
             <div id="dices">
-                <div class="die"></div>
-                <div class="die"></div>
-                <div class="die"></div>
-                <div class="die"></div>
-                <div class="die"></div>
+                <div>
+                    <div class="die" data-value="1"></div>
+                    <h1>1</h1>
+                    <button>Save Die</button>
+                </div>
+                <div>
+                    <div class="die" data-value="1"></div>
+                    <h1>1</h1>
+                </div>
+                <div>
+                    <div class="die" data-value="1"></div>
+                    <h1>1</h1>
+                </div>
+                <div>
+                    <div class="die" data-value="1"></div>
+                    <h1>1</h1>
+                </div>
+                <div>
+                    <div class="die" data-value="1"></div>
+                    <h1>1</h1>
+                </div>
             </div>
         </header>
-        <div id="info">
-            <div class="task">
-                <p>Names</p>
+        <main>
+            <div id="info">
+                <div class="task">
+                    <p>Names</p>
+                </div>
+                <div class="task">
+                    <p>Ones</p>
+                </div>
+                <div class="task">
+                    <p>Twos</p>
+                </div>
+                <div class="task">
+                    <p>Threes</p>
+                </div>
+                <div class="task">
+                    <p>Fours</p>
+                </div>
+                <div class="task">
+                    <p>Fives</p>
+                </div>
+                <div class="task">
+                    <p>Sixes</p>
+                </div>
+                <div id="upperTotal" class="task">
+                    <p>Upper Total</p>
+                </div>
+                <div id="bonus" class="task">
+                    <p>50 Bonus</p>
+                </div>
+                <div class="task">
+                    <p>One pair</p>
+                </div>
+                <div class="task">
+                    <p>Two pairs</p>
+                </div>
+                <div class="task">
+                    <p>3 of a kind</p>
+                </div>
+                <div class="task">
+                    <p>4 of a kind</p>
+                </div>
+                <div class="task">
+                    <p>Full House</p>
+                </div>
+                <div class="task">
+                    <p>Low Straight</p>
+                </div>
+                <div class="task">
+                    <p>High Straight</p>
+                </div>
+                <div class="task">
+                    <p>Yahtzee</p>
+                </div>
+                <div class="task">
+                    <p>Chance</p>
+                </div>
+                <div id="total" class="task">
+                    <p>Total</p>
+                </div>
             </div>
-            <div class="task">
-                <p>Ones</p>
-            </div>
-            <div class="task">
-                <p>Twos</p>
-            </div>
-            <div class="task">
-                <p>Threes</p>
-            </div>
-            <div class="task">
-                <p>Fours</p>
-            </div>
-            <div class="task">
-                <p>Fives</p>
-            </div>
-            <div class="task">
-                <p>Sixes</p>
-            </div>
-            <div id="upperTotal" class="task">
-                <p>Upper Total</p>
-            </div>
-            <div id="bonus" class="task">
-                <p>50 Bonus</p>
-            </div>
-            <div class="task">
-                <p>One pair</p>
-            </div>
-            <div class="task">
-                <p>Two pairs</p>
-            </div>
-            <div class="task">
-                <p>3 of a kind</p>
-            </div>
-            <div class="task">
-                <p>4 of a kind</p>
-            </div>
-            <div class="task">
-                <p>Full House</p>
-            </div>
-            <div class="task">
-                <p>Low Straight</p>
-            </div>
-            <div class="task">
-                <p>High Straight</p>
-            </div>
-            <div class="task">
-                <p>Yahtzee</p>
-            </div>
-            <div class="task">
-                <p>Chance</p>
-            </div>
-            <div id="total" class="task">
-                <p>Total</p>
-            </div>
-        </div>
+        </main>
     </div>
     <script src="main.js"></script>
 </body>
+
 </html>
