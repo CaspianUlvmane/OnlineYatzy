@@ -1,24 +1,50 @@
-"use strict"
+'use strict'
 
 let createElement = element => document.createElement(element)
-let wrapper = document.querySelector("#wrapper")
+let selectElements = element => document.querySelectorAll(element)
+let selectElement = element => document.querySelector(element)
 
-function createColumn(){
-    let container = createElement("div")
-    container.classList.add("player")
-    for (let i = 0; i < 19; ++i){
-        let div = createElement("div")
-        div.classList.add("task",`${i}`)
-        container.append(div)
-    }
-    return container
+selectElement('#throw').addEventListener('click', toggleThrow)
+selectElement('#board').addEventListener('click', toggleBoard)
+
+function createColumn () {
+  let container = createElement('div')
+  container.classList.add('player')
+  for (let i = 0; i < 19; ++i) {
+    let div = createElement('div')
+    div.classList.add(`task_${i}`)
+    div.classList.add(`task`)
+    container.append(div)
+  }
+  return container
 }
 
-function renderColumns (){
-    for (let i = 0; i < 4; ++i){
-        let column = createColumn()
-        wrapper.append(column)
-    }
+function renderColumns () {
+  for (let i = 0; i < 4; ++i) {
+    let column = createColumn()
+    selectElement('main').append(column)
+  }
+}
+
+function fillName () {
+  let nameBoxes = selectElements('.task_0')
+  for (let box of nameBoxes)
+    box.innerHTML = `<input type="text" value="Name"></input>`
+}
+
+function toggleThrow () {
+  selectElement('#throw').classList.toggle('active')
+  selectElement('#board').classList.toggle('active')
+  selectElement('header').style.display = 'flex'
+  selectElement('main').style.display = 'none'
+}
+
+function toggleBoard () {
+  selectElement('#throw').classList.toggle('active')
+  selectElement('#board').classList.toggle('active')
+  selectElement('header').style.display = 'none'
+  selectElement('main').style.display = 'flex'
 }
 
 renderColumns()
+fillName()
