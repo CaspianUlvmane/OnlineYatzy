@@ -6,6 +6,7 @@ let selectElement = element => document.querySelector(element)
 
 selectElement('#throw').addEventListener('click', toggleThrow)
 selectElement('#board').addEventListener('click', toggleBoard)
+selectElement('#roller').addEventListener('click', rollDice)
 
 function createColumn () {
   let container = createElement('div')
@@ -46,15 +47,54 @@ function toggleBoard () {
   selectElement('main').style.display = 'flex'
 }
 
-function numbGen (){
-    return Math.ceil(Math.random() * 6)
+function numbGen () {
+  return Math.ceil(Math.random() * 6)
 }
 
-function randomDice (dice){
-    let value = dice.dataset.value
-    let valueAsNumber = parseInt(value)
-    
+function randomDice (dice) {
+  let dieces = selectElements('[data-keep = "unsaved')
+  for (let die of dieces) {
+    die.dataset.value = numbGen()
+  }
+}
+
+function numberUpdate (){
+  let diceDivs = selectElements("#dices > div")
+  for (let div of diceDivs){
+    div.children[1].innerText = div.children[0].dataset.value
+  }
+}
+
+function rollDice () {
+  let timesRun = 0
+  let interval = setInterval(function () {
+    randomDice()
+    numberUpdate()
+    if (timesRun == 10) {
+      clearInterval(interval)
+    }
+    timesRun += 1
+  }, 150)
+}
+
+function saveButtons (){
+  let diceDivs = selectElements("#dices > div")
+  for (let div of diceDivs){
+    div.children[2].addEventListener("click", function (){saveToggle(div.children[0])})
+  }
+}
+
+function saveToggle(die){
+  if (die.dataset.keep == "unsaved"){
+    die.dataset.keep = "saved"
+    die.parentElement.children[2].innerText = "Unsave Die"
+  }
+  else {
+    die.dataset.keep = "unsaved"
+    die.parentElement.children[2].innerText = "Save Die"
+  }
 }
 
 renderColumns()
 fillName()
+saveButtons()
