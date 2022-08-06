@@ -46,14 +46,21 @@ function toggleBoard () {
   selectElement('main').style.display = 'flex'
 }
 
-function numbGen (){
-    return Math.ceil(Math.random() * 6)
+function numbGen () {
+  return Math.ceil(Math.random() * 6)
 }
 
-function randomDice (dice){
-    let value = dice.dataset.value
+function randomDice (dice) {
+  let dieces = selectElements(".die")
+  for (let die of dieces){
+    let value = die.dataset.value
     let valueAsNumber = parseInt(value)
-    
+    console.log(valueAsNumber)
+    console.log(value)
+    console.log(die.dataset.value)
+    die.dataset.value = numbGen()
+    console.log(die.dataset.value)
+  }
 }
 
 renderColumns()
