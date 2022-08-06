@@ -105,6 +105,7 @@ header {
 .die {
   border: var(--dark) solid 2px;
   width: 20%;
+  background-image: url(/Img/die_1.svg);
 }
 
 .die:before {
