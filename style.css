@@ -73,6 +73,10 @@ header {
   width: 100%;
 }
 
+header > h2, header > h3 {
+  margin: 4px;
+}
+
 #roller {
   padding: 1%;
 }
