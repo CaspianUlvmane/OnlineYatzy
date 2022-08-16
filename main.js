@@ -66,7 +66,11 @@ function numberUpdate (){
 }
 
 function rollDice () {
+  let player = selectElement("#playerName")
   let timesRun = 0
+  if(player.dataset.throw == 3){
+    return 3
+  }
   let interval = setInterval(function () {
     randomDice()
     numberUpdate()
@@ -75,6 +79,8 @@ function rollDice () {
     }
     timesRun += 1
   }, 150)
+  player.dataset.throw++ 
+  return parseInt(player.dataset.throw)
 }
 
 function saveButtons (){
