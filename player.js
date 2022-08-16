@@ -19,7 +19,21 @@ function playingPlayers (){
 
 function startGame (){
     playingPlayers()
+    turnsStart()
+    renderPlayer()
     currentThrow()
+}
+
+function currentPlayer(){
+    let players = [selectElements(".playing")]
+    let currentPlayerDiv = players.sort((a,b) => players[a].dataset.turn - players[b].dataset.turn)[0]
+    let currentPlayerName = currentPlayerDiv[0].children[0].children[0].value
+    return currentPlayerName
+}
+
+function renderPlayer(){
+    let nameSign = selectElement("#playerName")
+    nameSign.textContent = currentPlayer()
 }
 
 function currentThrow(){
@@ -27,4 +41,11 @@ function currentThrow(){
     let rollCounter = selectElement("#nmbRolls")
     rollCounter.innerText = `${player.dataset.throw}/3`
 
+}
+
+function turnsStart (){
+    let players = selectElements(".playing")
+    for (let player of players){
+        player.dataset.turn = 0
+    }
 }
