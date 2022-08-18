@@ -91,6 +91,10 @@ function saveButtons (){
 }
 
 function saveToggle(die){
+  let nmbThrow = parseInt(selectElement("#playerName").dataset.throw)
+  if (nmbThrow == 0){
+    return
+  }
   if (die.dataset.keep == "unsaved"){
     die.dataset.keep = "saved"
     die.parentElement.children[2].innerText = "Unsave Die"
