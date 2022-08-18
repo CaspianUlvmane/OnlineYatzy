@@ -26,10 +26,10 @@ function startGame (){
 }
 
 function currentPlayer(){
-    let players = [selectElements(".playing")]
-    let currentPlayerDiv = players.sort((a,b) => players[a].dataset.turn - players[b].dataset.turn)[0]
-    let currentPlayerName = currentPlayerDiv[0].children[0].children[0].value
-    return currentPlayerName
+    let players = sortPlayers()
+    let name = players.children[0].children[0].value
+    console.log(name)
+    return name
 }
 
 function renderPlayer(){
@@ -102,4 +102,26 @@ function addPoints (){
     let players = [selectElements(".playing")]
     let currentPlayerDiv = players.sort((a,b) => players[a].dataset.turn - players[b].dataset.turn)[0]
     currentPlayerDiv[0].dataset.turn++
+    nextTurn()
+}
+
+function nextTurn (){
+    renderPlayer()
+    resetRolls()
+}
+
+function resetRolls (){
+    let rollCounter = selectElement("#playerName")
+    rollCounter.dataset.throw = 0
+}
+
+function sortPlayers(){
+    let players = [selectElements(".playing")]
+    let playerElements = players[0]
+    let playingPlayersArray = []
+    for (let player of playerElements){
+        playingPlayersArray.push(player)
+    }
+    playingPlayersArray.sort((a,b) => a.dataset.turn - b.dataset.turn)
+    return playingPlayersArray[0]
 }
