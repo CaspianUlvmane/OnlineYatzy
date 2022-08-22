@@ -113,6 +113,13 @@ function nextTurn (){
 function resetRolls (){
     let rollCounter = selectElement("#playerName")
     rollCounter.dataset.throw = 0
+    let rollsCounter = selectElement("#nmbRolls")
+    rollsCounter.innerText = `${rollCounter.dataset.throw}/3`
+    let savedDie = selectElements(`[data-keep="saved"]`)
+    for (let die of savedDie){
+        die.dataset.keep = "unsaved"
+        die.parentElement.children[2].innerText = "Save Die"
+    }
 }
 
 function sortPlayers(){
