@@ -48,7 +48,7 @@ function toggleBoard () {
 }
 
 function numbGen () {
-  return Math.ceil(Math.random() * 6)
+  return Math.ceil(Math.random() * 1)
 }
 
 function randomDice (dice) {
@@ -58,17 +58,17 @@ function randomDice (dice) {
   }
 }
 
-function numberUpdate (){
-  let diceDivs = selectElements("#dices > div")
-  for (let div of diceDivs){
+function numberUpdate () {
+  let diceDivs = selectElements('#dices > div')
+  for (let div of diceDivs) {
     div.children[1].innerText = div.children[0].dataset.value
   }
 }
 
 function rollDice () {
-  let player = selectElement("#playerName")
+  let player = selectElement('#playerName')
   let timesRun = 0
-  if(player.dataset.throw == 3){
+  if (player.dataset.throw == 3) {
     return 3
   }
   let interval = setInterval(function () {
@@ -79,32 +79,9 @@ function rollDice () {
     }
     timesRun += 1
   }, 150)
-  player.dataset.throw++ 
+  player.dataset.throw++
   return parseInt(player.dataset.throw)
-}
-
-function saveButtons (){
-  let diceDivs = selectElements("#dices > div")
-  for (let div of diceDivs){
-    div.children[2].addEventListener("click", function (){saveToggle(div.children[0])})
-  }
-}
-
-function saveToggle(die){
-  let nmbThrow = parseInt(selectElement("#playerName").dataset.throw)
-  if (nmbThrow == 0){
-    return
-  }
-  if (die.dataset.keep == "unsaved"){
-    die.dataset.keep = "saved"
-    die.parentElement.children[2].innerText = "Unsave Die"
-  }
-  else {
-    die.dataset.keep = "unsaved"
-    die.parentElement.children[2].innerText = "Save Die"
-  }
 }
 
 renderColumns()
 fillName()
-saveButtons()
