@@ -56,7 +56,19 @@ function addYatzyPoints (player) {
   }
 }
 
-function addPoints (task) {
+function addPoints (task, turn) {
+  let currentPlayerDiv = sortPlayers()[0]
+  if (oneToSixeDone(currentPlayerDiv) == false) {
+    oneToSixPoints(task)
+  }
+  // else if()
+
+  upperTotal()
+  currentPlayerDiv.dataset.turn++
+  nextTurn()
+}
+
+function oneToSixPoints (task) {
   let taskStr = task.classList[0]
   let taskNmb = parseInt(taskStr.charAt(taskStr.length - 1))
   let die = selectElements('[data-keep = saved]')
@@ -67,10 +79,6 @@ function addPoints (task) {
     }
   }
   task.innerHTML = `${points}`
-  upperTotal()
-  let currentPlayerDiv = sortPlayers()[0]
-  currentPlayerDiv.dataset.turn++
-  nextTurn()
 }
 
 function resetRolls () {
@@ -106,19 +114,57 @@ function chooseTask () {
   let currentPlayerDiv = sortPlayers()[0]
   if (currentPlayerDiv.dataset.turn < 7) {
     for (let i = 1; i < 7; ++i) {
-      if (!currentPlayerDiv.children[i].classList.contains('chosen')) {
-        let taskDiv = currentPlayerDiv.children[i]
-        taskDiv.innerHTML = ''
-        let chooseButton = createElement('button')
-        chooseButton.innerText = 'Choose'
-        chooseButton.addEventListener('click', function () {
-          taskToggle(taskDiv)
-          removeChoice()
-          addPoints(taskDiv)
-        })
-        taskDiv.append(chooseButton)
+      oneToSixTasks(currentPlayerDiv, i)
+    }
+  } else if (currentPlayerDiv.dataset.turn == 7) {
+    {
+      if (oneToSixeDone(currentPlayerDiv) == false) {
+        oneToSixTasks(currentPlayerDiv, i)
       }
     }
+  } else if (currentPlayerDiv.dataset.turn > 7) {
+    for (let i = 9; i < 18; ++i) {}
+  }
+}
+
+function oneToSixTasks (player, i) {
+  if (!player.children[i].classList.contains('chosen')) {
+    let taskDiv = player.children[i]
+    taskDiv.innerHTML = ''
+    let chooseButton = createElement('button')
+    chooseButton.innerText = 'Choose'
+    chooseButton.addEventListener('click', function () {
+      taskToggle(taskDiv)
+      removeChoice()
+      addPoints(taskDiv, i)
+    })
+    taskDiv.append(chooseButton)
+  }
+}
+
+function oneToSixeDone (player) {
+  let taskList = []
+  for (let i = 1; i < 7; ++i) {
+    if (player.children[i].classList.contains('chosen')) {
+      let taskDiv = player.children[i]
+      taskList.push(taskDiv)
+    }
+  }
+  return taskList == 6
+}
+
+function lowerHalf (player, i) {
+  if (!player.children[i].classList.contains('chosen')) {
+    let taskDiv = player.children[i]
+    taskDiv.innerHTML = ''
+    let chooseButton = createElement('button')
+    chooseButton.innerText = 'Choose'
+    chooseButton.addEventListener('click', function () {
+      taskToggle(taskDiv)
+      removeChoice()
+      addPoints(taskDiv, i)
+    })
+    taskDiv.append(chooseButton)
   }
 }
 
