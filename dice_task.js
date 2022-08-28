@@ -58,11 +58,12 @@ function addYatzyPoints (player) {
 
 function addPoints (task, turn) {
   let currentPlayerDiv = sortPlayers()[0]
+  console.log(oneToSixeDone(currentPlayerDiv))
   if (oneToSixeDone(currentPlayerDiv) == false) {
     oneToSixPoints(task)
   }
   // else if()
-
+  taskToggle(task)
   upperTotal()
   currentPlayerDiv.dataset.turn++
   nextTurn()
@@ -112,18 +113,14 @@ function nextTurn () {
 
 function chooseTask () {
   let currentPlayerDiv = sortPlayers()[0]
-  if (currentPlayerDiv.dataset.turn < 7) {
+  if (oneToSixeDone(currentPlayerDiv) == false) {
     for (let i = 1; i < 7; ++i) {
       oneToSixTasks(currentPlayerDiv, i)
     }
-  } else if (currentPlayerDiv.dataset.turn == 7) {
-    {
-      if (oneToSixeDone(currentPlayerDiv) == false) {
-        oneToSixTasks(currentPlayerDiv, i)
-      }
+  } else {
+    for (let i = 9; i < 18; ++i) {
+      lowerHalf(currentPlayerDiv, i)
     }
-  } else if (currentPlayerDiv.dataset.turn > 7) {
-    for (let i = 9; i < 18; ++i) {}
   }
 }
 
@@ -134,7 +131,6 @@ function oneToSixTasks (player, i) {
     let chooseButton = createElement('button')
     chooseButton.innerText = 'Choose'
     chooseButton.addEventListener('click', function () {
-      taskToggle(taskDiv)
       removeChoice()
       addPoints(taskDiv, i)
     })
@@ -150,7 +146,7 @@ function oneToSixeDone (player) {
       taskList.push(taskDiv)
     }
   }
-  return taskList == 6
+  return (taskList.length == 6)
 }
 
 function lowerHalf (player, i) {
