@@ -67,6 +67,7 @@ function addPoints (task) {
     }
   }
   task.innerHTML = `${points}`
+  upperTotal()
   let currentPlayerDiv = sortPlayers()[0]
   currentPlayerDiv.dataset.turn++
   nextTurn()
@@ -132,6 +133,18 @@ function removeChoice () {
       button.parentElement.innerHTML = ''
     }
   }
+}
+
+function upperTotal () {
+  let currentPlayerDiv = sortPlayers()[0]
+  let points = 0
+  for (let i = 1; i < 7; ++i) {
+    let task = currentPlayerDiv.children[i]
+    if (task.classList.contains('chosen')) {
+      points += parseInt(task.innerText)
+    }
+  }
+  currentPlayerDiv.children[7].innerText = points
 }
 
 saveButtons()
