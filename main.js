@@ -48,7 +48,7 @@ function toggleBoard () {
 }
 
 function numbGen () {
-  return Math.ceil(Math.random() * 1)
+  return Math.ceil(Math.random() * 6)
 }
 
 function randomDice (dice) {
