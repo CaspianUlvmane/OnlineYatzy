@@ -36,25 +36,25 @@
   }
   
   [data-value = "1"]{
-    background-image: url(/Img/die_1.jpg);
+    background-image: url(Img/die_1.svg);
   }
 
   [data-value = "2"]{
-    background-image: url(/Img/die_2.jpg);
+    background-image: url(Img/die_2.svg);
   }
 
   [data-value = "3"]{
-    background-image: url(/Img/die_3.jpg);
+    background-image: url(Img/die_3.svg);
   }
 
   [data-value = "4"]{
-    background-image: url(/Img/die_4.jpg);
+    background-image: url(Img/die_4.svg);
   }
 
   [data-value = "5"]{
-    background-image: url(/Img/die_5.jpg);
+    background-image: url(Img/die_5.svg);
   }
 
   [data-value = "6"]{
-    background-image: url(/Img/die_6.jpg);
+    background-image: url(Img/die_6.svg);
   }
