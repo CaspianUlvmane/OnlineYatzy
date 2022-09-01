@@ -56,17 +56,40 @@ function addYatzyPoints (player) {
   }
 }
 
-function addPoints (task, turn) {
+function addPoints (task, taskNmb) {
   let currentPlayerDiv = sortPlayers()[0]
   console.log(oneToSixeDone(currentPlayerDiv))
   if (oneToSixeDone(currentPlayerDiv) == false) {
     oneToSixPoints(task)
+    taskToggle(task)
+    upperTotal()
   }
-  // else if()
-  taskToggle(task)
-  upperTotal()
+  else{
+    lowerHalfPoints(task, taskNmb)
+  }
   currentPlayerDiv.dataset.turn++
   nextTurn()
+}
+
+function lowerHalfPoints (task, taskNmb){
+  let die = selectElements('[data-keep = saved]')
+  console.log(die)
+  let dieArray = []
+  let points = 0
+  for (let dice of die){
+    dieArray.push(dice)
+  }
+  let sortedArray = dieArray.sort((a, b) => a.dataset.value - b.dataset.value).map((a) => a.dataset.value)
+  console.log(sortedArray)
+  if (taskNmb == 9){
+    for (let i = 0; i < sortedArray.length; ++i){
+      if (sortedArray[i] == sortedArray[i-1]){
+        points = (sortedArray[i] * 2)
+      }
+    }
+    console.log(points)
+    task.innerHTML = `${points}`
+  }
 }
 
 function oneToSixPoints (task) {
@@ -185,6 +208,9 @@ function upperTotal () {
     if (task.classList.contains('chosen')) {
       points += parseInt(task.innerText)
     }
+  }
+  if (points >= 63){
+    currentPlayerDiv.children[8].innerText = 50
   }
   currentPlayerDiv.children[7].innerText = points
 }
