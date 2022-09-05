@@ -67,7 +67,6 @@ function addYatzyPoints (player) {
 
 function addPoints (task, taskNmb) {
   let currentPlayerDiv = sortPlayers()[0]
-  console.log(oneToSixeDone(currentPlayerDiv))
   if (oneToSixeDone(currentPlayerDiv) == false) {
     oneToSixPoints(task)
     taskToggle(task)
@@ -80,8 +79,56 @@ function addPoints (task, taskNmb) {
 }
 
 function lowerHalfPoints (task, taskNmb) {
+  let dieArray = sortedDieArray()
+
+  if (taskNmb == 9) {
+    onePair(task, dieArray)
+  }
+  if (taskNmb == 10) {
+    twoPairs(task, dieArray)
+  }
+}
+
+function twoPairs (task, dieArray) {
+  let points = 0
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (dieArray[i] == dieArray[i - 1]) {
+      points = dieArray[i] * 2
+      let newArray = dieArray.slice(i - 1, 2)
+      for (let j = 0; j < newArray.length; ++j) {
+        if (newArray[i] == newArray[i - 1]) {
+          points += newArray[i] * 2
+        }
+        task.innerHTML = `${points}`
+      }
+    }
+  }
+}
+
+function threeOfAKind (task, dieArray) {}
+
+function fourOfAKind (task, dieArray) {}
+
+function smallLadder (task, dieArray) {}
+
+function largeLadder (task, dieArray) {}
+
+function Chance (task, dieArray) {}
+
+function fullHouse (task, dieArray) {}
+
+function onePair (task, dieArray) {
+  let points = 0
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (dieArray[i] == dieArray[i - 1]) {
+      points = dieArray[i] * 2
+    }
+  }
+  task.innerHTML = `${points}`
+}
+
+function sortedDieArray () {
   let die = selectElements('[data-keep = saved]')
-  console.log(die)
   let dieArray = []
   let points = 0
   for (let dice of die) {
@@ -90,16 +137,7 @@ function lowerHalfPoints (task, taskNmb) {
   let sortedArray = dieArray
     .sort((a, b) => a.dataset.value - b.dataset.value)
     .map(a => a.dataset.value)
-  console.log(sortedArray)
-  if (taskNmb == 9) {
-    for (let i = 0; i < sortedArray.length; ++i) {
-      if (sortedArray[i] == sortedArray[i - 1]) {
-        points = sortedArray[i] * 2
-      }
-    }
-    console.log(points)
-    task.innerHTML = `${points}`
-  }
+  return sortedArray
 }
 
 function oneToSixPoints (task) {
