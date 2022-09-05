@@ -47,11 +47,20 @@ function addYatzyPoints (player) {
   for (let dice of die) {
     dieArray.push(dice)
     if (dieArray.length == 5) {
-      if (dieArray.some(v => v.dataset.value === dieArray[0].dataset.value))
+      let filterdArray = dieArray.filter(
+        a => a.dataset.value == dieArray[0].dataset.value
+      )
+      if (filterdArray.length == 5) {
         player.children[16].innerText = 50
-      let currentPlayerDiv = sortPlayers()[0]
-      currentPlayerDiv.dataset.turn++
-      nextTurn()
+        let currentPlayerDiv = sortPlayers()[0]
+        currentPlayerDiv.dataset.turn++
+        nextTurn()
+      } else {
+        player.children[16].innerText = 0
+        let currentPlayerDiv = sortPlayers()[0]
+        currentPlayerDiv.dataset.turn++
+        nextTurn()
+      }
     }
   }
 }
@@ -63,28 +72,29 @@ function addPoints (task, taskNmb) {
     oneToSixPoints(task)
     taskToggle(task)
     upperTotal()
-  }
-  else{
+  } else {
     lowerHalfPoints(task, taskNmb)
   }
   currentPlayerDiv.dataset.turn++
   nextTurn()
 }
 
-function lowerHalfPoints (task, taskNmb){
+function lowerHalfPoints (task, taskNmb) {
   let die = selectElements('[data-keep = saved]')
   console.log(die)
   let dieArray = []
   let points = 0
-  for (let dice of die){
+  for (let dice of die) {
     dieArray.push(dice)
   }
-  let sortedArray = dieArray.sort((a, b) => a.dataset.value - b.dataset.value).map((a) => a.dataset.value)
+  let sortedArray = dieArray
+    .sort((a, b) => a.dataset.value - b.dataset.value)
+    .map(a => a.dataset.value)
   console.log(sortedArray)
-  if (taskNmb == 9){
-    for (let i = 0; i < sortedArray.length; ++i){
-      if (sortedArray[i] == sortedArray[i-1]){
-        points = (sortedArray[i] * 2)
+  if (taskNmb == 9) {
+    for (let i = 0; i < sortedArray.length; ++i) {
+      if (sortedArray[i] == sortedArray[i - 1]) {
+        points = sortedArray[i] * 2
       }
     }
     console.log(points)
@@ -169,7 +179,7 @@ function oneToSixeDone (player) {
       taskList.push(taskDiv)
     }
   }
-  return (taskList.length == 6)
+  return taskList.length == 6
 }
 
 function lowerHalf (player, i) {
@@ -209,7 +219,7 @@ function upperTotal () {
       points += parseInt(task.innerText)
     }
   }
-  if (points >= 63){
+  if (points >= 63) {
     currentPlayerDiv.children[8].innerText = 50
   }
   currentPlayerDiv.children[7].innerText = points
