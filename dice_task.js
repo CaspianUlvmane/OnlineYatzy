@@ -98,11 +98,11 @@ function twoPairs (task, dieArray) {
     if (dieArray[i] == dieArray[i - 1]) {
       points += dieArray[i] * 2
       pairs++
-      if (pairs < 2){
-        points = 0
-      }
-      task.innerHTML = `${points}`
     }
+    if (pairs < 2){
+      points = 0
+    }
+    task.innerHTML = `${points}`
   }
 }
 
