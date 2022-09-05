@@ -73,6 +73,7 @@ function addPoints (task, taskNmb) {
     upperTotal()
   } else {
     lowerHalfPoints(task, taskNmb)
+    lowerTotal()
   }
   currentPlayerDiv.dataset.turn++
   nextTurn()
@@ -91,16 +92,13 @@ function lowerHalfPoints (task, taskNmb) {
 
 function twoPairs (task, dieArray) {
   let points = 0
+  console.log(points)
   for (let i = 0; i < dieArray.length; ++i) {
     if (dieArray[i] == dieArray[i - 1]) {
-      points = dieArray[i] * 2
-      let newArray = dieArray.slice(i - 1, 2)
-      for (let j = 0; j < newArray.length; ++j) {
-        if (newArray[i] == newArray[i - 1]) {
-          points += newArray[i] * 2
-        }
-        task.innerHTML = `${points}`
-      }
+      points += dieArray[i] * 2
+      console.log(points)
+
+      task.innerHTML = `${points}`
     }
   }
 }
@@ -261,6 +259,18 @@ function upperTotal () {
     currentPlayerDiv.children[8].innerText = 50
   }
   currentPlayerDiv.children[7].innerText = points
+}
+
+function lowerTotal(){
+  let currentPlayerDiv = sortPlayers()[0]
+  let points = 0
+  for (let i = 9; i < 18; ++i) {
+    let task = currentPlayerDiv.children[i]
+    if (task.classList.contains('chosen')) {
+      points += parseInt(task.innerText)
+    }
+  }
+  currentPlayerDiv.children[18].innerText = points
 }
 
 saveButtons()
