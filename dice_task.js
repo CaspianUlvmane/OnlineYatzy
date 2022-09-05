@@ -92,12 +92,15 @@ function lowerHalfPoints (task, taskNmb) {
 
 function twoPairs (task, dieArray) {
   let points = 0
+  let pairs = 0
   console.log(points)
   for (let i = 0; i < dieArray.length; ++i) {
     if (dieArray[i] == dieArray[i - 1]) {
       points += dieArray[i] * 2
-      console.log(points)
-
+      pairs++
+      if (pairs < 2){
+        points = 0
+      }
       task.innerHTML = `${points}`
     }
   }
