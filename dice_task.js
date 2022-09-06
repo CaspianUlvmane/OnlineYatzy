@@ -88,33 +88,69 @@ function lowerHalfPoints (task, taskNmb) {
   if (taskNmb == 10) {
     twoPairs(task, dieArray)
   }
+  if (taskNmb == 11) {
+    threeOfAKind(task, dieArray)
+  }
+  if (taskNmb == 12) {
+    fourOfAKind(task, dieArray)
+  }
+  if (taskNmb == 17) {
+    Chance(task, dieArray)
+  }
 }
 
 function twoPairs (task, dieArray) {
   let points = 0
   let pairs = 0
-  console.log(points)
   for (let i = 0; i < dieArray.length; ++i) {
     if (dieArray[i] == dieArray[i - 1]) {
       points += dieArray[i] * 2
       pairs++
     }
-    if (pairs < 2){
-      points = 0
+  }
+  if (pairs < 2) {
+    points = 0
+  }
+  task.innerHTML = `${points}`
+}
+
+function threeOfAKind (task, dieArray) {
+  let points = 0
+
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (dieArray[i] == dieArray[i - 1] && dieArray[i] == dieArray[i - 2]) {
+      points = dieArray[i] * 3
     }
     task.innerHTML = `${points}`
   }
 }
 
-function threeOfAKind (task, dieArray) {}
+function fourOfAKind (task, dieArray) {
+  let points = 0
 
-function fourOfAKind (task, dieArray) {}
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (
+      dieArray[i] == dieArray[i - 1] &&
+      dieArray[i] == dieArray[i - 2] &&
+      dieArray[i] == dieArray[i - 3]
+    ) {
+      points = dieArray[i] * 4
+    }
+    task.innerHTML = `${points}`
+  }
+}
 
 function smallLadder (task, dieArray) {}
 
 function largeLadder (task, dieArray) {}
 
-function Chance (task, dieArray) {}
+function Chance (task, dieArray) {
+  let points = 0
+  for (let point of dieArray){
+  points += point 
+}
+  task.innerHTML = `${points}`
+}
 
 function fullHouse (task, dieArray) {}
 
@@ -264,7 +300,7 @@ function upperTotal () {
   currentPlayerDiv.children[7].innerText = points
 }
 
-function lowerTotal(){
+function lowerTotal () {
   let currentPlayerDiv = sortPlayers()[0]
   let points = 0
   for (let i = 9; i < 18; ++i) {
