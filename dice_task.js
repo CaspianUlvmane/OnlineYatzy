@@ -97,6 +97,12 @@ function lowerHalfPoints (task, taskNmb) {
   if (taskNmb == 13) {
     fullHouse(task, dieArray)
   }
+  if (taskNmb == 14) {
+    smallLadder(task, dieArray)
+  }
+  if (taskNmb == 15) {
+    largeLadder(task, dieArray)
+  }
   if (taskNmb == 17) {
     Chance(task, dieArray)
   }
@@ -143,9 +149,32 @@ function fourOfAKind (task, dieArray) {
   }
 }
 
-function smallLadder (task, dieArray) {}
+function smallLadder (task, dieArray) {
+  let points = 0
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (dieArray[i] == i + 1) {
+      points += parseInt(dieArray[i])
+    }
+  }
+  console.log(points)
+  if (points != 15) {
+    points = 0
+  }
+  task.innerHTML = `${points}`
+}
 
-function largeLadder (task, dieArray) {}
+function largeLadder (task, dieArray) {
+  let points = 0
+  for (let i = 0; i < dieArray.length; ++i) {
+    if (dieArray[i] == i + 2) {
+      points += parseInt(dieArray[i])
+    }
+  }
+  if (points != 20) {
+    points = 0
+  }
+  task.innerHTML = `${points}`
+}
 
 function Chance (task, dieArray) {
   let points = 0
