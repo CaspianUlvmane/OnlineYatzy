@@ -151,12 +151,13 @@ function fourOfAKind (task, dieArray) {
 
 function smallLadder (task, dieArray) {
   let points = 0
-  for (let i = 0; i < dieArray.length; ++i) {
-    if (dieArray[i] == i + 1) {
-      points += parseInt(dieArray[i])
+  if (dieArray.length == 5) {
+    for (let i = 0; i < dieArray.length; ++i) {
+      if (dieArray[i] == i + 1) {
+        points += parseInt(dieArray[i])
+      }
     }
   }
-  console.log(points)
   if (points != 15) {
     points = 0
   }
@@ -165,9 +166,11 @@ function smallLadder (task, dieArray) {
 
 function largeLadder (task, dieArray) {
   let points = 0
-  for (let i = 0; i < dieArray.length; ++i) {
-    if (dieArray[i] == i + 2) {
-      points += parseInt(dieArray[i])
+  if (dieArray.length == 5) {
+    for (let i = 0; i < dieArray.length; ++i) {
+      if (dieArray[i] == i + 2) {
+        points += parseInt(dieArray[i])
+      }
     }
   }
   if (points != 20) {
