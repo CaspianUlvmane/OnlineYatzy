@@ -147,7 +147,7 @@ function largeLadder (task, dieArray) {}
 function Chance (task, dieArray) {
   let points = 0
   for (let point of dieArray){
-  points += point 
+  points += parseInt(point) 
 }
   task.innerHTML = `${points}`
 }
