@@ -149,27 +149,34 @@ function largeLadder (task, dieArray) {}
 
 function Chance (task, dieArray) {
   let points = 0
-  for (let point of dieArray){
-  points += parseInt(point) 
-}
+  for (let point of dieArray) {
+    points += parseInt(point)
+  }
   task.innerHTML = `${points}`
 }
 
 function fullHouse (task, dieArray) {
   let points = 0
   for (let i = 0; i < dieArray.length; ++i) {
-    console.log(dieArray[i] == dieArray[i - 1] && dieArray[i + 1] == dieArray[i + 2] && dieArray[i + 1] == dieArray[i + 3])
-    console.log(dieArray[i] == dieArray[i - 1] && dieArray[i] == dieArray[i - 2] && dieArray[i + 1] == dieArray[i + 2])
-    if (dieArray[i] == dieArray[i - 1] && dieArray[i + 1] == dieArray[i + 2] && dieArray[i + 1] == dieArray[i + 3]) {
+    if (
+      dieArray[i] == dieArray[i - 1] &&
+      dieArray[i + 1] == dieArray[i + 2] &&
+      dieArray[i + 1] == dieArray[i + 3]
+    ) {
       points = dieArray[i] * 2 + dieArray[i + 1] * 3
-    }
-    else if (dieArray[i] == dieArray[i - 1] && dieArray[i] == dieArray[i - 2] && dieArray[i + 1] == dieArray[i + 2]){
+      task.innerHTML = `${points}`
+      return
+    } else if (
+      dieArray[i] == dieArray[i - 1] &&
+      dieArray[i] == dieArray[i - 2] &&
+      dieArray[i + 1] == dieArray[i + 2]
+    ) {
       points = dieArray[i] * 3 + dieArray[i + 1] * 2
+      task.innerHTML = `${points}`
+      return
     }
   }
-  task.innerHTML = `${points}`
 }
-
 
 function onePair (task, dieArray) {
   let points = 0
