@@ -353,6 +353,9 @@ function upperTotal () {
   if (points >= 63) {
     currentPlayerDiv.children[8].innerText = 50
   }
+  else {
+    currentPlayerDiv.children[8].innerText = 0
+  }
   currentPlayerDiv.children[7].innerText = points
 }
 
@@ -364,6 +367,11 @@ function lowerTotal () {
     if (task.classList.contains('chosen')) {
       points += parseInt(task.innerText)
     }
+  }
+  for (let i = 7; i < 9; ++i) {
+    let task = currentPlayerDiv.children[i]
+    points += parseInt(task.innerText)
+    console.log(points)
   }
   currentPlayerDiv.children[18].innerText = points
 }
