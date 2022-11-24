@@ -42,11 +42,11 @@ function chooseYatzy () {
 }
 
 function addYatzyPoints (player) {
-  let die = selectElements('[data-keep = saved]')
+  let die = selectElements('.die')
   let dieArray = []
   for (let dice of die) {
     dieArray.push(dice)
-    if (dieArray.length == 5) {
+    
       let filterdArray = dieArray.filter(
         a => a.dataset.value == dieArray[0].dataset.value
       )
@@ -61,7 +61,7 @@ function addYatzyPoints (player) {
         currentPlayerDiv.dataset.turn++
         nextTurn()
       }
-    }
+    
   }
 }
 
@@ -151,13 +151,17 @@ function fourOfAKind (task, dieArray) {
 
 function smallLadder (task, dieArray) {
   let points = 0
-  if (dieArray.length == 5) {
+
     for (let i = 0; i < dieArray.length; ++i) {
-      if (dieArray[i] == i + 1) {
+      if (dieArray[i] == dieArray[i+1]) {
+         points = 0
+        task.innerHTML = `${points}`
+        return
+      } else {
         points += parseInt(dieArray[i])
       }
     }
-  }
+  
   if (points != 15) {
     points = 0
   }
@@ -166,13 +170,16 @@ function smallLadder (task, dieArray) {
 
 function largeLadder (task, dieArray) {
   let points = 0
-  if (dieArray.length == 5) {
     for (let i = 0; i < dieArray.length; ++i) {
-      if (dieArray[i] == i + 2) {
+      if (dieArray[i] == dieArray[i+1]) {
+        points = 0
+        task.innerHTML = `${points}`
+        return
+      }
+      else {
         points += parseInt(dieArray[i])
       }
     }
-  }
   if (points != 20) {
     points = 0
   }
@@ -221,9 +228,8 @@ function onePair (task, dieArray) {
 }
 
 function sortedDieArray () {
-  let die = selectElements('[data-keep = saved]')
+  let die = selectElements('.die')
   let dieArray = []
-  let points = 0
   for (let dice of die) {
     dieArray.push(dice)
   }
@@ -236,7 +242,7 @@ function sortedDieArray () {
 function oneToSixPoints (task) {
   let taskStr = task.classList[0]
   let taskNmb = parseInt(taskStr.charAt(taskStr.length - 1))
-  let die = selectElements('[data-keep = saved]')
+  let die = selectElements('.die')
   let points = 0
   for (let dice of die) {
     if (dice.dataset.value == taskNmb) {
