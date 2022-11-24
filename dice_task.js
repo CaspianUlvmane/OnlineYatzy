@@ -379,7 +379,6 @@ function lowerTotal () {
   for (let i = 7; i < 9; ++i) {
     let task = currentPlayerDiv.children[i]
     points += parseInt(task.innerText)
-    console.log(points)
   }
   currentPlayerDiv.children[18].innerText = points
 }
