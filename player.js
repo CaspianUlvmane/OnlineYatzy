@@ -17,6 +17,8 @@ function playingPlayers () {
 }
 
 function startGame () {
+  document.querySelector("#start").style.display = "none"
+  document.querySelector("#roller").style.display = "block"
   playingPlayers()
   turnsStart()
   renderPlayer()

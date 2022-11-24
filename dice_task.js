@@ -45,24 +45,22 @@ function addYatzyPoints (player) {
   let die = selectElements('.die')
   let dieArray = []
   for (let dice of die) {
-    dieArray.push(dice)
-    
-      let filterdArray = dieArray.filter(
-        a => a.dataset.value == dieArray[0].dataset.value
-      )
-      if (filterdArray.length == 5) {
-        player.children[16].innerText = 50
-        let currentPlayerDiv = sortPlayers()[0]
-        currentPlayerDiv.dataset.turn++
-        nextTurn()
-      } else {
-        player.children[16].innerText = 0
-        let currentPlayerDiv = sortPlayers()[0]
-        currentPlayerDiv.dataset.turn++
-        nextTurn()
-      }
-    
-  }
+    dieArray.push(dice) 
+    }
+
+    let filteredArray = dieArray.filter(a => a.dataset.value == dieArray[0].dataset.value)  
+
+    if (filteredArray.length == 5) {
+      player.children[16].innerText = 50
+      let currentPlayerDiv = sortPlayers()[0]
+      currentPlayerDiv.dataset.turn++
+      nextTurn()
+    } else {
+      player.children[16].innerText = 0
+      let currentPlayerDiv = sortPlayers()[0]
+      currentPlayerDiv.dataset.turn++
+      nextTurn()
+    }
 }
 
 function addPoints (task, taskNmb) {
@@ -81,6 +79,7 @@ function addPoints (task, taskNmb) {
 
 function lowerHalfPoints (task, taskNmb) {
   let dieArray = sortedDieArray()
+  let currentPlayerDiv = sortPlayers()[0]
 
   if (taskNmb == 9) {
     onePair(task, dieArray)
@@ -103,6 +102,9 @@ function lowerHalfPoints (task, taskNmb) {
   if (taskNmb == 15) {
     largeLadder(task, dieArray)
   }
+  if (taskNmb == 16) {
+    addYatzyPoints(currentPlayerDiv)
+  }
   if (taskNmb == 17) {
     Chance(task, dieArray)
   }
@@ -112,7 +114,7 @@ function twoPairs (task, dieArray) {
   let points = 0
   let pairs = 0
   for (let i = 0; i < dieArray.length; ++i) {
-    if (dieArray[i] == dieArray[i - 1]) {
+    if (dieArray[i] == dieArray[i - 1] && dieArray[i] == dieArray[i - 2]) {
       points += dieArray[i] * 2
       pairs++
     }

@@ -88,6 +88,7 @@ header > h2, header > h3 {
 
 #roller {
   padding: 1%;
+  display: none;
 }
 
 #info {
