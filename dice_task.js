@@ -114,7 +114,7 @@ function twoPairs (task, dieArray) {
   let points = 0
   let pairs = 0
   for (let i = 0; i < dieArray.length; ++i) {
-    if (dieArray[i] == dieArray[i - 1] && dieArray[i] == dieArray[i - 2]) {
+    if (dieArray[i] == dieArray[i + 1] && dieArray[i] != dieArray[i + 2]) {
       points += dieArray[i] * 2
       pairs++
     }
